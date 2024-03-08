@@ -1,0 +1,5 @@
+<resources>
+<string name="valid_username">usuario</string>
+    <string name="valid_password">contraseña</string>
+    <string name="app_name">peliculas-con-login</string>
+</resources>
