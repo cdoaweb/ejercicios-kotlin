@@ -1,46 +1,53 @@
 package com.pmdm.fragmentos
 
+import android.content.Context
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.pmdm.fragmentos.ui.theme.FragmentosTheme
+import android.util.AttributeSet
+import android.view.View
+import android.widget.Button
+import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 
-class MainActivity : ComponentActivity() {
+class MainActivity : AppCompatActivity() {
+
+    private val firstFragment = FirstFragment()
+    private val secondFragment= SecondFragment()
+    private lateinit var fragmentManager : FragmentManager //gestor de Fragmentos.
+    private lateinit var btnFirstFragment: Button
+    private lateinit var btnSecondFragment: Button
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            FragmentosTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    Greeting("Android")
-                }
-            }
+        setContentView(R.layout.activity_main)
+        initComponent()
+        initEvent()
+    }
+
+    private fun initComponent() {
+       fragmentManager = supportFragmentManager  //gestor de transacciones
+       btnFirstFragment = findViewById(R.id.btn_frag1)
+       btnSecondFragment = findViewById(R.id.btn_frag2)
+    }
+
+    private fun initEvent() {
+        btnFirstFragment.setOnClickListener{
+            val transaction = fragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container_view_dinamic, firstFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+        }
+
+        btnSecondFragment.setOnClickListener{
+            val transaction = fragmentManager.beginTransaction()
+            transaction.replace(R.id.fragment_container_view_dinamic, secondFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
         }
     }
-}
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    FragmentosTheme {
-        Greeting("Android")
-    }
 }

@@ -30,20 +30,20 @@ class MoviesListFragment : Fragment() {
         recyclerView = view.findViewById(R.id.moviesRecyclerView)
         recyclerView.layoutManager = LinearLayoutManager(context)
 
-            view.findViewById<FloatingActionButton>(R.id.addMovieFAB).setOnClickListener {
-                NewMovieDialogFragment { newMovie ->
+        view.findViewById<FloatingActionButton>(R.id.addMovieFAB).setOnClickListener {
+            NewMovieDialogFragment { newMovie ->
                 moviesList = mutableListOf(
-            
-			Movie("Título 1", 2021, "Descripción 1", "URL de la imagen 1"),
-            Movie("Título 2", 2022, "Descripción 2", "URL de la imagen 2")
-        ).toMutableList()
+
+                    Movie("Título 1", 2021, "Descripción 1", "URL de la imagen 1"),
+                    Movie("Título 2", 2022, "Descripción 2", "URL de la imagen 2")
+                ).toMutableList()
 
 
 
-                    moviesList.add(newMovie)
-                    moviesAdapter.notifyItemInserted(moviesList.size - 1)
-                }.show(parentFragmentManager, "newMovieDialog")
-            }
+                moviesList.add(newMovie)
+                moviesAdapter.notifyItemInserted(moviesList.size - 1)
+            }.show(parentFragmentManager, "newMovieDialog")
+        }
 
         moviesAdapter = MoviesAdapter(moviesList, { position ->
             moviesList.removeAt(position)
