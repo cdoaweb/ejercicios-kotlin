@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">fragmentos</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_1">Don quijote de la mancha</string>
+    <string name="fragment_2">Hijo del que data manco</string>
+    <string name="fragment_3">Esta serie continuará</string>
+    <string name="fragment_4">Mi señor son molinos de viento y no gigantes</string>
+    <string name="fragment_5">Sancho esta carta es para mi Dulcinea del Toboso</string>
 </resources>
